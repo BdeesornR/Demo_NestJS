@@ -25,7 +25,7 @@ export class BooksController {
   ) {
     return response
       .status(HttpStatus.OK)
-      .json(this.booksService.create(createBookDto));
+      .json(await this.booksService.create(createBookDto));
   }
 
   @Get()
