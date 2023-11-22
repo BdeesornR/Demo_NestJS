@@ -10,7 +10,7 @@ import { Book } from './entities/book.entity';
 export class BooksService {
   constructor(
     @InjectRepository(Book)
-    private bookRepository: Repository<Book>,
+    private readonly bookRepository: Repository<Book>,
   ) {}
 
   create(createBookDto: CreateBookDto): Promise<Book> {
@@ -31,9 +31,9 @@ export class BooksService {
   findOne(id: number) {
     return this.bookRepository
       .createQueryBuilder()
-      .select('book')
-      .from(Book, 'book')
-      .where('book.id = :id', { id: id })
+      .select('bookTable')
+      .from(Book, 'bookTable')
+      .where('bookTable.id = :id', { id: id })
       .getOne();
   }
 
@@ -44,7 +44,7 @@ export class BooksService {
     const retrievedBook = await this.findOne(id).then((res) => res);
 
     if (retrievedBook == null) {
-      return Promise.reject('Record Not Found');
+      return Promise.reject(new Error('Record Not Found'));
     }
 
     retrievedBook.title = updateBookDto.title;

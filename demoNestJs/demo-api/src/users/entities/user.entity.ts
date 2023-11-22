@@ -6,22 +6,19 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('book')
-export class Book {
+@Entity('user')
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  username: string;
 
   @Column()
-  description: string;
+  password: string;
 
   @Column()
-  thumbnail: string;
-
-  @Column()
-  author: string;
+  role: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;

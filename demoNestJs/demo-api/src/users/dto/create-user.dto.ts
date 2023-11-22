@@ -2,28 +2,22 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateBookDto {
+export class CreateUserDto {
   @ApiProperty()
   @IsNotEmpty()
   @Transform(({ value }) => value.trim())
   @IsString()
-  title: string;
+  username: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @Transform(({ value }) => value.trim())
   @IsString()
-  description: string;
+  password: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @Transform(({ value }) => value.trim())
   @IsString()
-  thumbnail: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @Transform(({ value }) => value.trim())
-  @IsString()
-  author: string;
+  role: string;
 }

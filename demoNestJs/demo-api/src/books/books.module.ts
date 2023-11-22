@@ -5,20 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from './entities/book.entity';
 
 @Module({
+  imports: [TypeOrmModule.forFeature([Book])],
   controllers: [BooksController],
   providers: [BooksService],
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'P@ssw0rd',
-      database: 'demo_nestjs',
-      synchronize: true,
-      entities: [Book],
-    }),
-    TypeOrmModule.forFeature([Book]),
-  ],
 })
 export class BooksModule {}
